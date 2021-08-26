@@ -13,3 +13,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/docker/temp/*
+!/docker/temp/.gitkeep
+/docker/db_files/*
+!/docker/db_files/.gitkeep

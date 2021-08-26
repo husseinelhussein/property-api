@@ -1,0 +1,19 @@
+Host git.drupal.org
+	IdentitiesOnly yes
+	IdentityFile ~/.ssh/id_rsa
+Host gitlab.com
+	IdentitiesOnly yes
+	IdentityFile ~/.ssh/id_rsa
+Host gitlab.org
+	IdentitiesOnly yes
+	IdentityFile ~/.ssh/id_rsa
+Host hussein-e@bitbucket.org
+	IdentitiesOnly yes
+	IdentityFile ~/.ssh/id_rsa
+Host *.us.platform.sh
+       ForwardAgent yes
+
+Host *.eu.platform.sh
+       ForwardAgent yes
+Host *
+    IdentitiesOnly yes

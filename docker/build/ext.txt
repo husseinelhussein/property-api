@@ -1,0 +1,1 @@
+     [ v3_ca ]\n     authorityKeyIdentifier=keyid,issuer\n     basicConstraints=CA:FALSE\n     keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment\n     subjectAltName=DNS:dropbyke.loc    
