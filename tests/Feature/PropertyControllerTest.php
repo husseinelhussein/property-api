@@ -33,6 +33,7 @@ class PropertyControllerTest extends TestCase
         $properties = Property::factory()->count(10)->create();
         $response = $this->get('/');
         $response->assertStatus(200);
+        $response->assertSeeText('Property API');
         $response->assertSeeText('Properties');
 
         $property = $properties->first();
