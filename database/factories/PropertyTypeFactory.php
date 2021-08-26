@@ -23,7 +23,7 @@ class PropertyTypeFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->text,
+            'title' => $this->faker->text(30),
             'description' => $this->faker->paragraph,
         ];
     }

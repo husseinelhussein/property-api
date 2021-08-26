@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\PropertyController@index');
+Route::get('/', 'App\Http\Controllers\PropertyController@index')->name('property.index');
+Route::get('/filter', 'App\Http\Controllers\PropertyController@filter')->name('property.filter');
