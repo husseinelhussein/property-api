@@ -5,10 +5,10 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class PropertyTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Tests that a Property can be generated and saved.
      *
      * @return void
      */
