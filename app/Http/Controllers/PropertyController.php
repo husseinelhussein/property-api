@@ -89,12 +89,14 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Property  $property
+     * @param int $id the id of the resource.
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property)
+    public function show($id)
     {
-        //
+        $property = Property::findOrFail($id);
+        return view('properties.show', compact('property'));
     }
 
     /**
@@ -128,6 +130,7 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
-        //
+        $property->delete();
+        return redirect()->route('property.index');
     }
 }

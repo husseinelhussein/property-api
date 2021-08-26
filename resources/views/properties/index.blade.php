@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
     <div class="container">
         <div class="row">
@@ -66,7 +66,7 @@
                             </p>
                             <p class="card-text">{{ $property->description }}</p>
                             <p class="card-text"><small class="text-muted">{{ $property->created_at->diffForHumans() }}</small></p>
-                            <a href="#" class="btn btn-primary">View</a>
+                            <a href="{{ route('property.show', ['id' => $property->id]) }}" class="btn btn-primary">View</a>
                         </div>
                     </div>
                 </div>
