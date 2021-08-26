@@ -9,7 +9,7 @@ class PropertyType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'remote_id'];
 
     public function properties(){
         return $this->hasMany(Property::class);
