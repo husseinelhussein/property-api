@@ -18,22 +18,22 @@
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="description">Name</label>
-                                    <input type="text" class="form-control" name="description" id="description">
+                                    <input type="text" class="form-control" name="description" id="description" value="{{ $filters['description']?? "" }}">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="number_of_bedrooms">Number of Bedrooms</label>
-                                    <input type="number" class="form-control" name="number_of_bedrooms" id="number_of_bedrooms">
+                                    <input type="number" class="form-control" name="number_of_bedrooms" id="number_of_bedrooms" value="{{ $filters['number_of_bedrooms']?? "0" }}">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="price">Price</label>
-                                    <input type="number" class="form-control" name="price" id="price">
+                                    <input type="number" class="form-control" name="price" id="price" value="{{ $filters['price'] ?? "0"}}">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="property_type">Property Type</label>
                                     <select class="custom-select" name="property_type" id="property_type">
-                                        <option selected value="">Choose...</option>
+                                        <option {{!isset($filters['property_type'])? "selected": ''}} value="">Choose...</option>
                                         @foreach($propertyTypes as $propertyType)
-                                            <option value="{{ $propertyType->id }}">{{ strlen($propertyType->title) > 20? substr($propertyType->title, 0, 20) . '..': $propertyType->title }}</option>
+                                            <option {{ isset($filters['property_type']) && $filters['property_type'] == $propertyType->id ? "selected": "" }} value="{{ $propertyType->id }}">{{ strlen($propertyType->title) > 20? substr($propertyType->title, 0, 20) . '..': $propertyType->title }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -41,9 +41,9 @@
                                 <div class="col-md-3 mb-3">
                                     <label for="type">Type</label>
                                     <select class="custom-select" name="type" id="type">
-                                        <option selected value="">Choose...</option>
-                                        <option value="sale">For Sale</option>
-                                        <option value="rent">For Rent</option>
+                                        <option {{ !isset($filters['type'])? "selected": "" }} value="">Choose...</option>
+                                        <option {{ isset($filters['type']) && $filters['type'] === 'sale'? "selected": "" }} value="sale">For Sale</option>
+                                        <option {{ isset($filters['type']) && $filters['type'] === 'rent'? "selected": "" }} value="rent">For Rent</option>
                                     </select>
                                 </div>
                             </div>
@@ -71,6 +71,11 @@
                     </div>
                 </div>
             @endforeach
+            @if(!count($properties))
+                <div class="col-md-12 text-center">
+                    <p class="text-warning">No properties found that match your search criteria!</p>
+                </div>
+            @endif
         </div>
         {{ $properties->links() }}
     </div>

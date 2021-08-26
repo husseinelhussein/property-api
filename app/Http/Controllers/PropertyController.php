@@ -18,7 +18,8 @@ class PropertyController extends Controller
     {
         $properties = Property::paginate();
         $propertyTypes = PropertyType::all();
-        return view('properties.index', compact('properties', 'propertyTypes'));
+        $filters = [];
+        return view('properties.index', compact('properties', 'propertyTypes', 'filters'));
     }
 
     /**
@@ -32,25 +33,35 @@ class PropertyController extends Controller
         $query = Property::query();
 
         // Apply the description filter:
-        if(isset($filters['description'])){
+        if (isset($filters['description'])){
             $query->where('description', 'LIKE', '%' . $filters['description'] . '%');
         }
-        if(isset($filters['number_of_bedrooms'])){
+
+        // Apply the number_of_bedrooms filter:
+        if (isset($filters['number_of_bedrooms'])) {
             $query->where('number_of_bedrooms', '=', $filters['number_of_bedrooms']);
         }
-        if(isset($filters['price'])){
+
+        // Apply price filter:
+        if ( isset($filters['price']) ) {
             $query->where('price', '=', $filters['price']);
         }
 
-        if(isset($filters['property_type'])){
+        // Apply property_type filter:
+        if (isset($filters['property_type'])) {
             $query->where('property_type_id', '=', $filters['property_type']);
         }
-        if(isset($filters['type'])){
+
+        // Apply type filter:
+        if (isset($filters['type'])) {
             $query->where('type', '=', $filters['type']);
         }
         $properties = $query->paginate();
+        foreach ($filters as $name => $value) {
+            $properties->appends($name, $value);
+        }
         $propertyTypes = PropertyType::all();
-        return view('properties.index', compact('properties', 'propertyTypes'));
+        return view('properties.index', compact('properties', 'propertyTypes', 'filters'));
     }
 
     /**
